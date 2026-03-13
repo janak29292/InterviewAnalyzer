@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="AI-powered coding interview video analyzer. Upload your screen-recorded coding interview and get comprehensive feedback on code quality, problem-solving, communication, and more.">
+  <title>Interview Analyzer — AI-Powered Coding Interview Feedback</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header__logo">
+        <div class="header__icon">🎯</div>
+        <h1 class="header__title">Interview Analyzer</h1>
+      </div>
+      <p class="header__subtitle">Upload your coding interview recording and get AI-powered feedback on code quality,
+        problem-solving, communication &amp; more</p>
+    </header>
+
+    <!-- Error Banner -->
+    <div id="error-banner" class="error-banner"></div>
+
+    <!-- Upload Section -->
+    <section id="upload-section" class="upload-section">
+      <div id="upload-zone" class="upload-zone">
+        <span class="upload-zone__icon">🖥️</span>
+        <h2 class="upload-zone__title">Drop your coding interview recording here</h2>
+        <p class="upload-zone__text">Screen-shared coding sessions, technical interviews, pair programming</p>
+        <button class="upload-zone__btn" id="browse-btn">📁 Choose Video</button>
+        <p class="upload-zone__formats">Supports MP4, WebM, MOV, AVI, MKV • Up to 2 GB</p>
+        <input type="file" id="file-input" accept="video/*">
+      </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section id="progress-section" class="progress-section">
+      <div class="progress-card">
+        <div class="progress-card__file">
+          <span class="progress-card__file-icon">🎬</span>
+          <span class="progress-card__file-name" id="progress-filename">video.mp4</span>
+          <span class="progress-card__file-size" id="progress-filesize">0 MB</span>
+        </div>
+
+        <!-- Upload progress -->
+        <div class="upload-progress" id="upload-progress">
+          <div class="upload-progress__label">
+            <span id="upload-label">Uploading to server...</span>
+            <span id="upload-percent">0%</span>
+          </div>
+          <div class="upload-progress__bar">
+            <div class="upload-progress__fill" id="upload-fill"></div>
+          </div>
+        </div>
+
+        <!-- Analysis spinner -->
+        <div class="analysis-spinner" id="analysis-spinner">
+          <div class="spinner-ring"></div>
+          <p class="analysis-spinner__text" id="spinner-text">Starting analysis pipeline...</p>
+          <p class="analysis-spinner__sub" id="spinner-sub">This may take 10-30 minutes for longer videos</p>
+        </div>
+
+        <!-- Status steps -->
+        <div class="status-steps">
+          <div class="status-step" id="step-upload">
+            <span class="status-step__dot"></span>
+            <span>Upload</span>
+          </div>
+          <div class="status-step" id="step-extract">
+            <span class="status-step__dot"></span>
+            <span>Extract</span>
+          </div>
+          <div class="status-step" id="step-transcribe">
+            <span class="status-step__dot"></span>
+            <span>Transcribe</span>
+          </div>
+          <div class="status-step" id="step-frames">
+            <span class="status-step__dot"></span>
+            <span>Frames</span>
+          </div>
+          <div class="status-step" id="step-analyze">
+            <span class="status-step__dot"></span>
+            <span>AI Analysis</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results-section" class="results-section">
+      <!-- Overall Score Hero -->
+      <div class="score-hero animate-in" id="score-hero">
+        <div class="score-circle">
+          <svg viewBox="0 0 160 160">
+            <circle class="score-circle__bg" cx="80" cy="80" r="70"></circle>
+            <circle class="score-circle__fill" id="score-ring" cx="80" cy="80" r="70"></circle>
+          </svg>
+          <div class="score-circle__value">
+            <span class="score-circle__number" id="overall-score">0</span>
+            <span class="score-circle__label">Overall</span>
+          </div>
+        </div>
+        <p class="score-hero__summary" id="overall-summary"></p>
+        <div class="score-hero__verdict" id="overall-verdict"></div>
+      </div>
+
+      <!-- Local Metrics Bar -->
+      <div class="metrics-bar animate-in" id="metrics-bar">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Category Cards -->
+      <div class="cards-grid" id="cards-grid"></div>
+
+      <!-- Strengths & Improvements -->
+      <div class="strengths-improvements" id="strengths-improvements"></div>
+
+      <!-- Question Breakdown -->
+      <div class="questions-section" id="questions-section">
+        <h2 class="questions-section__title">📋 Question-by-Question Breakdown</h2>
+        <div id="questions-list"></div>
+      </div>
+
+      <!-- Readiness -->
+      <div class="readiness-section" id="readiness-section"></div>
+
+      <!-- New Analysis -->
+      <div style="text-align: center; padding: 20px 0;">
+        <button class="new-analysis-btn" id="new-analysis-btn">🔄 Analyze Another Video</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+
+</html>
