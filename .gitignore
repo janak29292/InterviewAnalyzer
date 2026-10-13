@@ -1,6 +1,30 @@
+# Environment
 .env
+.venv/
+venv/
+
+# Python
 __pycache__/
 *.pyc
-uploads/
-.venv/
+*.pyo
+
+# Data (keep structure via .gitkeep)
+data/uploads/*
+!data/uploads/.gitkeep
+data/generated/*
+!data/generated/.gitkeep
+*.db
+
+# Legacy archive
+_legacy/
+
+# IDE
 .idea/
+
+# Node
+node_modules/
+frontend/dist/
+
+# OS
+.DS_Store
+Thumbs.db
